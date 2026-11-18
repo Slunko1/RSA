@@ -32,7 +32,7 @@ class UiScreen(QDialog):
 
 			private_key = ""
 
-			if plain_text == "":
+			if plain_text.strip() == "":
 				QMessageBox.warning(self, "Bad input", "Plain Text cannot be empty")
 				return
 
@@ -94,14 +94,14 @@ class UiScreen(QDialog):
 				try:
 					n, d = private_key.split(",")
 				except:
-					QMessageBox.warning(self, "Bad input", "Public key format is wrong")
+					QMessageBox.warning(self, "Bad input", "Private key format is wrong")
 					return
 
 				try:
 					int(n)
 					int(d)
 				except:
-					QMessageBox.warning(self, "Bad input", "Public key is not an integer")
+					QMessageBox.warning(self, "Bad input", "Private key is not an integer")
 					return
 
 				private_key = (int(n.strip()), int(d.strip()))
