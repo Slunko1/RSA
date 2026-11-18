@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(147, 145, 122)</string>
+    <string notr="true">background-color: rgb(4, 30, 4);</string>
    </property>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
@@ -35,7 +35,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(147, 145, 122)</string>
+     <string notr="true">background-color: rgb(4, 30, 4);</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -48,7 +48,7 @@
        </property>
        <property name="styleSheet">
         <string notr="true">font: 24pt &quot;ArcadeClassic&quot;;
-color:rgb(30, 32, 27);</string>
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="text">
         <string>Text to cipher / decipher</string>
@@ -58,8 +58,8 @@ color:rgb(30, 32, 27);</string>
      <item>
       <widget class="QTextEdit" name="textEdit_plainText">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(30, 32, 27);
-color: rgb(147, 145, 122)</string>
+        <string notr="true">background-color: rgb(13, 59, 13);
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -80,7 +80,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="styleSheet">
         <string notr="true">font: 24pt &quot;ArcadeClassic&quot;;
-color:rgb(30, 32, 27);</string>
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="text">
         <string>BINARY</string>
@@ -90,8 +90,8 @@ color:rgb(30, 32, 27);</string>
      <item>
       <widget class="QTextEdit" name="textEdit_binaryText">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(30, 32, 27);
-color: rgb(147, 145, 122)</string>
+        <string notr="true">background-color: rgb(13, 59, 13);
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -112,7 +112,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="styleSheet">
         <string notr="true">font: 24pt &quot;ArcadeClassic&quot;;
-color:rgb(30, 32, 27);</string>
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="text">
         <string>Result</string>
@@ -122,8 +122,8 @@ color:rgb(30, 32, 27);</string>
      <item>
       <widget class="QTextEdit" name="textEdit_cipheredText">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(30, 32, 27);
-color: rgb(147, 145, 122)</string>
+        <string notr="true">background-color: rgb(13, 59, 13);
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -147,9 +147,9 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="styleSheet">
         <string notr="true">QRadioButton {
-    background-color: rgb(30, 32, 27);
+    background-color: rgb(13, 59, 13);
     font: 16pt &quot;ArcadeClassic&quot;;
-    color: rgb(147, 145, 122);
+    color:rgb(0, 255, 65);
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -185,9 +185,9 @@ QRadioButton::indicator:checked {
        </property>
        <property name="styleSheet">
         <string notr="true">QRadioButton {
-    background-color: rgb(30, 32, 27);
+    background-color: rgb(13, 59, 13);
     font: 16pt &quot;ArcadeClassic&quot;;
-    color: rgb(147, 145, 122);
+    color:rgb(0, 255, 65);
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -219,9 +219,9 @@ QRadioButton::indicator:checked {
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(30, 32, 27);
+        <string notr="true">background-color: rgb(13, 59, 13);
 font: 16pt &quot;ArcadeClassic&quot;;
-color: rgb(147, 145, 122)</string>
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="text">
         <string>Start</string>
@@ -247,7 +247,7 @@ color: rgb(147, 145, 122)</string>
     </property>
     <property name="styleSheet">
      <string notr="true">qproperty-alignment: 'AlignHCenter | AlignVCenter';
-font: 81 60pt &quot;ArcadeClassic&quot;; color:rgb(30, 32, 27);
+font: 81 60pt &quot;ArcadeClassic&quot;; color:rgb(0, 255, 65);
 
 
 </string>
@@ -276,7 +276,7 @@ font: 81 60pt &quot;ArcadeClassic&quot;; color:rgb(30, 32, 27);
        </property>
        <property name="styleSheet">
         <string notr="true">font: 24pt &quot;ArcadeClassic&quot;;
-color:rgb(30, 32, 27);</string>
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="text">
         <string>PUBLIC KEY</string>
@@ -286,8 +286,8 @@ color:rgb(30, 32, 27);</string>
      <item>
       <widget class="QTextEdit" name="textEdit_publicKey">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(30, 32, 27);
-color: rgb(147, 145, 122)</string>
+        <string notr="true">background-color: rgb(13, 59, 13);
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -308,7 +308,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="styleSheet">
         <string notr="true">font: 24pt &quot;ArcadeClassic&quot;;
-color:rgb(30, 32, 27);</string>
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="text">
         <string>PRIVATE KEY</string>
@@ -318,8 +318,8 @@ color:rgb(30, 32, 27);</string>
      <item>
       <widget class="QTextEdit" name="textEdit_privateKey">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(30, 32, 27);
-color: rgb(147, 145, 122)</string>
+        <string notr="true">background-color: rgb(13, 59, 13);
+color:rgb(0, 255, 65);</string>
        </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

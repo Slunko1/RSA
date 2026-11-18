@@ -129,7 +129,8 @@ def generate_keys():
 
 	return private_key, public_key
 
-def decrypt(cipher_text, d, n):
+def decrypt(cipher_text, private_key):
+	n, d = private_key
 	blocks = get_blocks(cipher_text)
 	decrypted_text = ""
 	for block in blocks:

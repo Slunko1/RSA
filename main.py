@@ -42,11 +42,25 @@ class UiScreen(QDialog):
 				private_key, public_key = RSA.generate_keys()
 			else:
 				public_key = publicKey
+				private_key = self.textEdit_privateKey.toPlainText()
 
 			#preved na tuple
 			if publicKey != "":
 				publicKey = publicKey.replace("(", "").replace(")", "")
-				n, e = publicKey.split(",")
+
+				try:
+					n, e = publicKey.split(",")
+				except:
+					QMessageBox.warning(self, "Bad input", "Public key format is wrong")
+					return
+
+				try:
+					int(n)
+					int(e)
+				except:
+					QMessageBox.warning(self, "Bad input", "Public key is not an integer")
+					return
+
 				public_key = (int(n.strip()), int(e.strip()))
 
 			cipher_text, binary_text = RSA.encrypt(plain_text, public_key)
@@ -73,11 +87,26 @@ class UiScreen(QDialog):
 				QMessageBox.warning(self, "Bad input", "Private Key cannot be empty")
 				return
 
+			#preved na tuple
+			else:
+				private_key = private_key.replace("(", "").replace(")", "")
 
-			private_key = private_key.replace("(", " ").replace(")", " ")
-			n, d = private_key.split(",")
+				try:
+					n, d = private_key.split(",")
+				except:
+					QMessageBox.warning(self, "Bad input", "Public key format is wrong")
+					return
 
-			decrypted_text = RSA.decrypt(plain_text, int(d), int(n))
+				try:
+					int(n)
+					int(d)
+				except:
+					QMessageBox.warning(self, "Bad input", "Public key is not an integer")
+					return
+
+				private_key = (int(n.strip()), int(d.strip()))
+
+			decrypted_text = RSA.decrypt(plain_text, private_key)
 
 			self.textEdit_cipheredText.setPlainText(str(decrypted_text))
 
