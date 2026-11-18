@@ -9,7 +9,23 @@ bit_size = 8
 def generate_random_number(a, b):
 	return random.randrange(a, b)
 
-def check_prime(random_number, k):
+def check_prime(random_number):
+	if random_number < 2:
+		return False
+
+	if random_number == 2:
+		return True
+
+	if random_number % 2 == 0:
+		return False
+
+	for number in range(3, round(math.sqrt(random_number)) + 1, 2):
+		if random_number % number == 0:
+			return False
+
+	return True
+
+def check_prime_rabinmiller(random_number, k):
 	if random_number < 2:
 		return False
 
@@ -57,6 +73,11 @@ def euler(p, q):
 	return (p - 1) * (q - 1)
 
 def get_euler_e(phi):
+	e = 65537
+
+	if over_gcd(e, phi):
+		return e
+
 	while True:
 		e = generate_random_number(2, phi)
 
@@ -66,25 +87,8 @@ def get_euler_e(phi):
 def find_inverse(e, euler_n):
 	return pow(e, -1, euler_n)
 
-def encrypt(plain_text):
-	p, q = 0, 0
-	while p == 0 or q == 0:
-		random_number = generate_random_number(range_low, range_high)
-		if check_prime(random_number, 40):
-			if p == 0:
-				p = random_number
-			elif random_number != p:
-				q = random_number
-
-	n = multiply(p, q)
-	phi = euler(p, q)
-	e = get_euler_e(phi)
-	d = find_inverse(e, phi)
-
-	private_key = (n, d)
-	public_key = (n, e)
-
-
+def encrypt(plain_text, public_key):
+	n, e = public_key
 	blocks = split_into_blocks(plain_text)
 
 	ciphered_text = ""
@@ -103,7 +107,27 @@ def encrypt(plain_text):
 	if ciphered_text[-1] == " ":
 		ciphered_text = ciphered_text[:-1]
 
-	return ciphered_text, private_key, public_key, binary_text
+	return ciphered_text, binary_text
+
+def generate_keys():
+	p, q = 0, 0
+	while p == 0 or q == 0:
+		random_number = generate_random_number(range_low, range_high)
+		if check_prime(random_number):
+			if p == 0:
+				p = random_number
+			elif random_number != p:
+				q = random_number
+
+	n = multiply(p, q)
+	phi = euler(p, q)
+	e = get_euler_e(phi)
+	d = find_inverse(e, phi)
+
+	private_key = (n, d)
+	public_key = (n, e)
+
+	return private_key, public_key
 
 def decrypt(cipher_text, d, n):
 	blocks = get_blocks(cipher_text)
@@ -163,8 +187,6 @@ def convert_ascii_to_binary(ascii_values):
 def convert_binary_to_decimal(binary):
 	return int(binary, 2) # 2 <- znamena ze text je v bin forme
 
-
-
 def convert_binary_to_ascii(binary):
 	binary_values = []
 
@@ -195,20 +217,7 @@ def convert_ascii_to_text(binary_values):
 	return text
 
 def get_blocks(cipher_text):
-	blocks = []
-
-	block_text = ""
-	for i in cipher_text:
-		if i == " ":
-			blocks.append(block_text)
-			block_text = ""
-		else:
-			block_text += i
-
-	if block_text:
-		blocks.append(block_text)
-
-	return blocks
+	return cipher_text.split()
 
 def decrypt_block(ciphered_block, d, n):
 	return pow(ciphered_block, d, n)
@@ -216,3 +225,32 @@ def decrypt_block(ciphered_block, d, n):
 def convert_decimal_to_binary(decimal):
 	return format(decimal, 'b')
 
+def normalize_text(text):
+	text = text.replace("á", "a").replace("ä", "a")
+	text = text.replace("č", "c").replace("ď", "d")
+	text = text.replace("é", "e").replace("í", "i")
+	text = text.replace("ĺ", "l").replace("ľ", "l")
+	text = text.replace("ň", "n").replace("ó", "o")
+	text = text.replace("ô", "o").replace("ŕ", "r")
+	text = text.replace("š", "s").replace("ť", "t")
+	text = text.replace("ú", "u").replace("ý", "y")
+	text = text.replace("ž", "z")
+
+	text = text.replace("Á", "A").replace("Ä", "A")
+	text = text.replace("Č", "C").replace("Ď", "D")
+	text = text.replace("É", "E").replace("Í", "I")
+	text = text.replace("Ĺ", "L").replace("Ľ", "L")
+	text = text.replace("Ň", "N").replace("Ó", "O")
+	text = text.replace("Ô", "O").replace("Ŕ", "R")
+	text = text.replace("Š", "S").replace("Ť", "T")
+	text = text.replace("Ú", "U").replace("Ý", "Y")
+	text = text.replace("Ž", "Z")
+
+	ascii = "".join(chr(i) for i in range(32, 127))
+
+	novy_text = ""
+	for znak in text:
+		if znak in ascii:
+			novy_text += znak
+
+	return novy_text

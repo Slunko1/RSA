@@ -28,12 +28,28 @@ class UiScreen(QDialog):
 	def spracuj(self):
 		if self.radioButton_Encrypt.isChecked():
 			plain_text = self.textEdit_plainText.toPlainText()
+			plain_text = RSA.normalize_text(plain_text)
+
+			private_key = ""
 
 			if plain_text == "":
 				QMessageBox.warning(self, "Bad input", "Plain Text cannot be empty")
 				return
 
-			cipher_text, private_key, public_key, binary_text = RSA.encrypt(plain_text)
+			publicKey = self.textEdit_publicKey.toPlainText()
+
+			if publicKey == "":
+				private_key, public_key = RSA.generate_keys()
+			else:
+				public_key = publicKey
+
+			#preved na tuple
+			if publicKey != "":
+				publicKey = publicKey.replace("(", "").replace(")", "")
+				n, e = publicKey.split(",")
+				public_key = (int(n.strip()), int(e.strip()))
+
+			cipher_text, binary_text = RSA.encrypt(plain_text, public_key)
 
 			self.textEdit_publicKey.setPlainText(str(public_key))
 			self.textEdit_privateKey.setPlainText(str(private_key))
@@ -46,6 +62,11 @@ class UiScreen(QDialog):
 				QMessageBox.warning(self, "Bad input", "Plain Text cannot be empty")
 				return
 
+			for i in plain_text:
+				if i not in "0123456789 ":
+					QMessageBox.warning(self, "Bad input", i)
+					return
+
 			private_key = self.textEdit_privateKey.toPlainText()
 
 			if private_key == "":
@@ -54,7 +75,6 @@ class UiScreen(QDialog):
 
 
 			private_key = private_key.replace("(", " ").replace(")", " ")
-
 			n, d = private_key.split(",")
 
 			decrypted_text = RSA.decrypt(plain_text, int(d), int(n))
