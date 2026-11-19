@@ -84,8 +84,8 @@ def get_euler_e(phi):
 		if over_gcd(e, phi):
 			return e
 
-def find_inverse(e, euler_n):
-	return pow(e, -1, euler_n)
+def find_inverse(e, phi):
+	return pow(e, -1, phi)
 
 def encrypt(plain_text, public_key):
 	n, e = public_key
